@@ -18,6 +18,30 @@ export class BasicPageComponent /*implements OnInit */ {
     });
   }*/
 
+  //Metodo para errores
+  isValidField(field: string): boolean | null {
+    return this.myForm.controls[field].errors && this.myForm.controls[field].touched;
+  }
+
+  getFieldError(field: string): string | null {
+
+    if (!this.myForm.controls[field]) {
+      return null;
+    }
+
+    const errors = this.myForm.controls[field].errors || {};
+
+    for (const key of Object.keys(errors)) {
+      switch (key) {
+        case 'required':
+          return 'Este campo es requerido';
+        case 'minlength':
+          return `Mínimo ${errors['minlength'].requiredLength} caracters.`;
+      }
+    }
+
+    return null;
+  }
 
   //Dos Maneras de hacer el mismo Formulario
 
