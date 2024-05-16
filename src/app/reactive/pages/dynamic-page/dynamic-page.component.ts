@@ -50,7 +50,13 @@ export class DynamicPageComponent {
     return null;
   }
 
+  /*addFavorite(): void {
+    this.favoriteGames.push()
+  }*/
 
+  onDeleteFavorite( i: number): void {
+    this.favoriteGames.removeAt(i);
+  }
 
 
   onSubmit(): void {
