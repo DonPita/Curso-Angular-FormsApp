@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,11 +6,18 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styles: ``
 })
 
-export class BasicPageComponent {
+export class BasicPageComponent /*implements OnInit */{
 
 
 
   constructor(private fb: FormBuilder) { }
+
+  /*ngOnInit(): void {
+    this.myForm.reset({ //Se le puede pasar constantes como valores iniciales
+
+    });
+  }*/
+
 
   //Dos Maneras de hacer el mismo Formulario
 
@@ -32,6 +39,8 @@ export class BasicPageComponent {
     }
 
     console.log(this.myForm.value);
+
+    this.myForm.reset({price: 0, inStorage: 0});
   }
 
 }
