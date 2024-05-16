@@ -6,7 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styles: ``
 })
 
-export class BasicPageComponent /*implements OnInit */{
+export class BasicPageComponent /*implements OnInit */ {
 
 
 
@@ -26,7 +26,8 @@ export class BasicPageComponent /*implements OnInit */{
   //    price: new FormControl(0),
   //    inStorage: new FormControl(0),
   // });
-  public myForm: FormGroup = this.fb.group({
+  //Con el nonNullable, al hacer el reset, los valores van directos a los iniciales.
+  public myForm: FormGroup = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     price: [0, [Validators.required, Validators.min(0)]],
     inStorage: [0, [Validators.required, Validators.min(0)]]
@@ -35,12 +36,13 @@ export class BasicPageComponent /*implements OnInit */{
   onSave(): void {
 
     if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
       return;
     }
 
     console.log(this.myForm.value);
 
-    this.myForm.reset({price: 0, inStorage: 0});
+    this.myForm.reset();
   }
 
 }
